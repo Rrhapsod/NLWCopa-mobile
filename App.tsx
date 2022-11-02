@@ -1,4 +1,4 @@
-import { NativeBaseProvider, Center, StatusBar } from "native-base";
+import { NativeBaseProvider, StatusBar } from "native-base";
 import { THEME } from "./src/styles/theme";
 import {
   useFonts,
@@ -9,6 +9,9 @@ import {
 
 import { Loading } from "./src/components/Loading";
 import { SignIn } from "./src/screens/SignIn";
+import { Pools } from "./src/screens/Pools";
+
+import { AuthContextProvider } from "./src/contexts/AuthContext";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -19,14 +22,14 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME}>
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor="transparent"
-        translucent
-      />
-      <Center flex={1} bgColor="gray.900">
-        {fontsLoaded ? <SignIn /> : <Loading />}
-      </Center>
+      <AuthContextProvider>
+        <StatusBar
+          barStyle="light-content"
+          backgroundColor="transparent"
+          translucent
+        />
+        {fontsLoaded ? <Pools /> : <Loading />}
+      </AuthContextProvider>
     </NativeBaseProvider>
   );
 }
