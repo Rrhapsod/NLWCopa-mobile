@@ -3,7 +3,7 @@ import { Heading, HStack, Text, VStack } from "native-base";
 
 import { Participants, ParticipantProps } from "./Participants";
 
-export interface PoolPros {
+export interface PoolCardProps {
   id: string;
   code: string;
   title: string;
@@ -12,14 +12,14 @@ export interface PoolPros {
   owner: {
     name: string;
   };
-  participants: ParticipantProps[];
+  Participant: ParticipantProps[];
   _count: {
-    participants: number;
+    Participant: number;
   };
 }
 
 interface Props extends TouchableOpacityProps {
-  data: PoolPros;
+  data: PoolCardProps;
 }
 
 export function PoolCard({ data, ...rest }: Props) {
@@ -48,8 +48,8 @@ export function PoolCard({ data, ...rest }: Props) {
         </VStack>
 
         <Participants
-          count={data._count.participants}
-          participants={data.participants}
+          count={data._count.Participant}
+          participants={data.Participant}
         />
       </HStack>
     </TouchableOpacity>
